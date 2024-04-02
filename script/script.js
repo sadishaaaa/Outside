@@ -33,3 +33,17 @@ hamburgerClose.addEventListener("click", () => {
   hamburgerClose.style.display = "none";
   menuWrapper.style.opacity = 0;
 });
+
+/**
+ * Menu Wrapper
+ */
+const menuWrapper = document.querySelector(".menu-wrapper");
+
+/**
+ * Mealtime Link Functionality
+ */
+const mealtimeButton = document.querySelector(".mealtime-button");
+
+mealtimeButton.addEventListener("click", () => {
+  menuWrapper.style.opacity = 1;
+});
