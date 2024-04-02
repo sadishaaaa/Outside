@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Welcome to our website! Explore our range of products and services for mealtime, playtime, and bathtime. We offer high-quality products for a great experience."
+    />
+    <meta
+      name="keywords"
+      content="mealtime, playtime, bathtime, products, the play boxes, gifts, services, website, "
+    />
+    <meta name="author" content="Sadisha Shrestha" />
+
+    <!--StyleSheet-->
+    <link rel="stylesheet" href="./normalize.css" />
+    <link rel="stylesheet" href="./style.css" />
+
+    <!--Custom Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Next Step:Assignment</title>
+  </head>
+  <body>
+    <!--Header-->
+    <header>
+      <!--Announcement-->
+      <div class="announcement">
+        <span> This is a global announcement </span>
+        <i data-lucide="X" id="cross-button"></i>
+      </div>
+      <!--Announcement End-->
+
+      <!--Navigation Bar-->
+      <nav>
+        <figure class="logo-figure">
+          <h1 class="logo">LOGO</h1>
+        </figure>
+        <i data-lucide="menu" id="hamburger-menu"></i>
+        <i data-lucide="X" id="hamburger-close"></i>
+
+        <!--Desktop Menu-->
+        <menu class="desktop-menu">
+          <ul class="desktop-menu-list">
+            <li class="mealtime-button" id="desk-mealtime">Mealtime</li>
+            <li>Playtime</li>
+            <li>Bathtime</li>
+            <li class="desktop-play-boxes">
+              The Play Boxes
+              <figure class="desktop-new-tag">
+                <img src="./assets/new-tag.svg" alt="desktop-new-tag" />
+              </figure>
+            </li>
+            <li>Gifts</li>
+            <li>Best Sellers</li>
+          </ul>
+        </menu>
+        <!--Desktop Menu End-->
+
+        <!--Mobile Menu-->
+        <menu class="mobile-menu">
+          <ul class="mobile-menu-list">
+            <li>Mealtime</li>
+            <li>Playtime</li>
+            <li>Bathtime</li>
+            <li class="play-boxes">
+              The Play Boxes
+              <figure class="new-tag">
+                <img src="./assets/new-tag.svg" alt="new-tag" />
+              </figure>
+            </li>
+            <li>Gifts</li>
+            <li>Best Sellers</li>
+          </ul>
+        </menu>
+        <!--Mobile End-->
+
+        <!--Menus-->
+        <div class="menu-wrapper">
+          <!--Mealtime Menu-->
+          <div class="menu">
+            <ul class="list">
+              <h3>Shop Mealtime</h3>
+              <li>High Chair</li>
+              <li>Booster</li>
+              <li>Table & Bibs</li>
+              <li>Mealtime Accessories</li>
+              <li>Bundle & Save</li>
+              <li>All Mealtime</li>
+            </ul>
+          </div>
+          <!--Mealtime Menu End-->
+        </div>
+        <!--Menus End-->
+      </nav>
+      <!--Navigation Bar End-->
+    </header>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
