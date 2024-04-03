@@ -50,13 +50,22 @@ mealtimeButton.addEventListener("click", () => {
  * Menu link active
  */
 const menuItem = document.querySelector(".menu-item");
+
 menuItem.addEventListener("click", () => {
-  if (Array.from(menuItem.classList).includes("active")) {
+  // Check if the screen width is less than 768px
+  if (window.innerWidth < 768) {
+    // Remove "active" class
     menuItem.classList.remove("active");
     menuWrapper.style.display = "none";
   } else {
-    menuItem.classList.add("active");
-    menuWrapper.style.display = "flex";
+    // Toggle "active" class and show/hide menu wrapper
+    if (Array.from(menuItem.classList).includes("active")) {
+      menuItem.classList.remove("active");
+      menuWrapper.style.display = "none";
+    } else {
+      menuItem.classList.add("active");
+      menuWrapper.style.display = "flex";
+    }
   }
 });
 
