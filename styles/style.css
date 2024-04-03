@@ -98,11 +98,11 @@ nav {
   cursor: pointer;
 }
 
-.desktop-menu-list > li:hover {
+/* .desktop-menu-list > li:hover {
   background: #ecf3ff;
   padding: 4px 12px;
   border-radius: 100px;
-}
+} */
 li {
   color: #0f234c;
 }
@@ -189,6 +189,11 @@ h3 {
 }
 .menu > .list > li:last-child {
   text-decoration: underline;
+}
+.active {
+  background: #ecf3ff;
+  padding: 4px 12px;
+  border-radius: 100px;
 }
 
 /* carousel */

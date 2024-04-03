@@ -43,9 +43,21 @@ const menuWrapper = document.querySelector(".menu-wrapper");
  * Mealtime Link Functionality
  */
 const mealtimeButton = document.querySelector(".mealtime-button");
-
 mealtimeButton.addEventListener("click", () => {
   menuWrapper.style.opacity = 1;
+});
+/*
+ * Menu link active
+ */
+const menuItem = document.querySelector(".menu-item");
+menuItem.addEventListener("click", () => {
+  if (Array.from(menuItem.classList).includes("active")) {
+    menuItem.classList.remove("active");
+    menuWrapper.style.display = "none";
+  } else {
+    menuItem.classList.add("active");
+    menuWrapper.style.display = "flex";
+  }
 });
 
 /**
