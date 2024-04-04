@@ -43,123 +43,83 @@ const menuWrapper = document.querySelector(".menu-wrapper");
  * Mealtime Link Functionality
  */
 const mealtimeButton = document.querySelector(".mealtime-button");
+const mealtimeMenuWrapper = document.querySelector(".mealtime-menu-wrapper");
 mealtimeButton.addEventListener("click", () => {
-  menuWrapper.style.opacity = 1;
-});
-/*
- * Menu link active
- */
-const menuItem = document.querySelector(".menu-item");
-
-menuItem.addEventListener("click", () => {
-  // Check if the screen width is less than 768px
-  if (window.innerWidth < 768) {
-    // Remove "active" class
-    menuItem.classList.remove("active");
-    menuWrapper.style.display = "none";
+  if (Array.from(mealtimeButton.classList).includes("active")) {
+    mealtimeButton.classList.remove("active");
+    mealtimeMenuWrapper.style.opacity = 0;
   } else {
-    // Toggle "active" class and show/hide menu wrapper
-    if (Array.from(menuItem.classList).includes("active")) {
-      menuItem.classList.remove("active");
-      menuWrapper.style.display = "none";
-    } else {
-      menuItem.classList.add("active");
-      menuWrapper.style.display = "flex";
-    }
+    setMenuVisibility("mealtime");
   }
 });
+const setMenuVisibility = (menu) => {
+  if (menu === "mealtime") {
+    playtimeButton.classList.remove("active");
+    playtimeMenuWrapper.style.opacity = 0;
+    mealtimeButton.classList.add("active");
+    mealtimeMenuWrapper.style.opacity = 1;
+  } else if (menu === "playtime") {
+    mealtimeButton.classList.remove("active");
+    mealtimeMenuWrapper.style.opacity = 0;
+    playtimeButton.classList.add("active");
+    playtimeMenuWrapper.style.opacity = 1;
+  }
+};
 
 /**
- * Carousel
+ * Playtime Link Functionality
  */
-const wrapper = document.querySelector(".wrapper");
-const carousel = document.querySelector(".carousel");
-const firstCardWidth = carousel.querySelector(".card").offsetWidth;
-const arrowBtns = document.querySelectorAll(".wrapper i");
-const carouselChildrens = [...carousel.children];
-
-let isDragging = false,
-  isAutoPlay = true,
-  startX,
-  startScrollLeft,
-  timeoutId;
-
-// the number of cards that can fit in the carousel at once
-let cardPerView = Math.round(carousel.offsetWidth / firstCardWidth);
-
-// Inserting copies of the last few cards to beginning of carousel to result infinite scrolling
-carouselChildrens
-  .slice(-cardPerView)
-  .reverse()
-  .forEach((card) => {
-    carousel.insertAdjacentHTML("afterbegin", card.outerHTML);
-  });
-
-// Inserting copies of the first few cards to end of carousel to result infinite scrolling
-carouselChildrens.slice(0, cardPerView).forEach((card) => {
-  carousel.insertAdjacentHTML("beforeend", card.outerHTML);
+const playtimeMenuWrapper = document.querySelector(".playtime-menu-wrapper");
+const playtimeButton = document.querySelector(".playtime-button");
+playtimeButton.addEventListener("click", () => {
+  if (Array.from(playtimeButton.classList).includes("active")) {
+    playtimeButton.classList.remove("active");
+    playtimeMenuWrapper.style.opacity = 0;
+  } else {
+    setMenuVisibility("playtime");
+  }
+});
+/**
+ * Bathtime Link Functionality
+ */
+const bathtimeButton = document.querySelector(".bathtime-button");
+bathtimeButton.addEventListener("click", () => {
+  menuWrapper.style.opacity = 1;
 });
 
-// Scroll the carousel at appropriate postition to hide first card
-carousel.classList.add("no-transition");
-carousel.scrollLeft = carousel.offsetWidth;
-carousel.classList.remove("no-transition");
+/*
+ *carousel
+ */
+const nextButton = document.querySelector("#next");
+const prevButton = document.querySelector("#prev");
 
-// Adding event listeners for the arrow buttons to scroll the carousel left and right
-arrowBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const scrollAmount = firstCardWidth + 1;
-    carousel.scrollLeft += btn.id == "left" ? -scrollAmount : scrollAmount;
-  });
+const slidingDiv = document.querySelector(".sliding-div");
+const card = document.querySelector(".card");
+
+const numberOfSlides = document.querySelectorAll(".playtimeCard").length;
+let leftPosition = 0;
+let currentSlide = 1;
+console.log(numberOfSlides);
+const cardWith = card.offsetWidth;
+const gapBetweenCards = 800 / 3 + 10;
+
+nextButton.addEventListener("click", () => {
+  if (currentSlide < numberOfSlides) {
+    leftPosition -= cardWith + gapBetweenCards;
+    slidingDiv.style.left = leftPosition + "px";
+    currentSlide++;
+  }
+  if (currentSlide === numberOfSlides) {
+    leftPosition = 0;
+    slidingDiv.style.left = 0;
+    currentSlide = 0;
+  }
 });
 
-const dragStart = (e) => {
-  isDragging = true;
-  carousel.classList.add("dragging");
-  // Records the initial cursor and scroll position of the carousel
-  startX = e.pageX;
-  startScrollLeft = carousel.scrollLeft;
-};
-
-const dragging = (e) => {
-  if (!isDragging) return; // if isDragging is false return from here
-  // Updates the scroll position of the carousel based on the cursor movement
-  carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
-};
-
-const dragStop = () => {
-  isDragging = false;
-  carousel.classList.remove("dragging");
-};
-
-const infiniteScroll = () => {
-  // If the carousel is at the beginning, scroll to the end
-  if (carousel.scrollLeft === 0) {
-    carousel.classList.add("no-transition");
-    carousel.scrollLeft = carousel.scrollWidth / 3;
-    carousel.classList.remove("no-transition");
+prevButton.addEventListener("click", () => {
+  if (currentSlide > 0) {
+    leftPosition += cardWith + gapBetweenCards;
+    slidingDiv.style.left = leftPosition + "px";
+    currentSlide--;
   }
-  // If the carousel is at the end, scroll to the beginning
-  else if (carousel.scrollLeft >= carousel.scrollWidth / 1.5) {
-    carousel.classList.add("no-transition");
-    carousel.scrollLeft = carousel.scrollWidth / 3;
-    carousel.classList.remove("no-transition");
-  }
-
-  // Clear existing timeout & start autoplay if mouse is not hovering over carousel
-  clearTimeout(timeoutId);
-  if (!wrapper.matches(":hover")) autoPlay();
-};
-
-const autoPlay = () => {
-  if (window.innerWidth < 800 || !isAutoPlay) return;
-  timeoutId = setTimeout(() => (carousel.scrollLeft += firstCardWidth), 2500);
-};
-autoPlay();
-
-carousel.addEventListener("mousedown", dragStart);
-carousel.addEventListener("mousemove", dragging);
-document.addEventListener("mouseup", dragStop);
-carousel.addEventListener("scroll", infiniteScroll);
-wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
-wrapper.addEventListener("mouseleave", autoPlay);
+});

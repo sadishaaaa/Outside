@@ -318,3 +318,86 @@ h3 {
     padding-left: 10rem;
   }
 }
+
+.window {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.sliding-div {
+  display: flex;
+  gap: 10px;
+  height: 100%;
+  min-width: fit-content;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  transition: ease-in-out 300ms;
+}
+
+.playtimeCard {
+  height: 320px;
+  background-color: #f1f1f1;
+  width: calc(800px / 3);
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.buttons {
+  display: flex;
+}
+.buttons button {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.buttons button span {
+  color: #0f234c;
+  font-size: 2rem;
+}
+.buttons button span:hover {
+  color: #f2f2f2;
+}
+.carousel-top {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+}
+.carousel-heading {
+  font-size: 18px;
+  font-style: italic;
+}
+.playtime-card-img {
+  height: 80%;
+}
+.playtime-card-img-info {
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 13px;
+}
+.card-title {
+  font-weight: 300;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 9px;
+  color: #828282;
+  letter-spacing: 1.6px;
+}
+.product-name {
+  font-size: 20px;
+  color: #0f234c;
+  line-height: 27px;
+  letter-spacing: 0.3px;
+}

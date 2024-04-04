@@ -12,7 +12,7 @@
     />
     <meta
       name="keywords"
-      content="mealtime, playtime, bathtime, products, the play boxes, gifts, services, website, "
+      content="mealtime, playtime, bathtime, products, the play boxes, gifts, services, website"
     />
     <meta name="author" content="Sadisha Shrestha" />
 
@@ -26,6 +26,10 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
     <title>Next Step:Assignment</title>
   </head>
@@ -70,23 +74,25 @@
         <!--Mobile Menu-->
         <menu class="mobile-menu">
           <ul class="mobile-menu-list">
-            <li>Mealtime</li>
-            <li>Playtime</li>
-            <li>Bathtime</li>
-            <li class="play-boxes">
+            <li class="menu-item">Mealtime</li>
+            <li class="menu-item">Playtime</li>
+            <li class="menu-item">Bathtime</li>
+            <li class="menu-item play-boxes">
               The Play Boxes
               <figure class="new-tag">
                 <img src="./assets/new-tag.svg" alt="new-tag" />
               </figure>
             </li>
-            <li>Gifts</li>
-            <li>Best Sellers</li>
+            <li class="menu-item">Gifts</li>
+            <li class="menu-item">Best Sellers</li>
           </ul>
         </menu>
         <!--Mobile End-->
 
         <!--Menus-->
-        <div class="menu-wrapper">
+
+        <!-- Mealtime Megamenu Dropdown -->
+        <div class="menu-wrapper mealtime-menu-wrapper">
           <!--Mealtime Menu-->
           <div class="menu mealtime-menu">
             <ul class="list mealtime-list">
@@ -99,18 +105,6 @@
               <li>All Mealtime</li>
             </ul>
           </div>
-          <!-- <div class="menu playtime-menu">
-            <ul class="list playtime-list">
-              <h3>Shop Playtime</h3>
-              <li>High Chair</li>
-              <li>Booster</li>
-              <li>Table & Bibs</li>
-              <li>Mealtime Accessories</li>
-              <li>Bundle & Save</li>
-              <li>All Mealtime</li>
-            </ul>
-          </div> -->
-
           <!-- Mealtime-carousel -->
           <div class="wrapper mealtime-carousel-content">
             <div class="carousel-button">
@@ -212,6 +206,91 @@
           </div>
           <!-- Mealtime carousel end -->
         </div>
+        <!-- Mealtime Megamenu Dropdown end -->
+        <!-- Playtime Megamenu Dropdown -->
+        <div class="menu-wrapper playtime-menu-wrapper">
+          <!--Playtime Menu-->
+          <div class="menu playtime-menu">
+            <ul class="list playtime-list">
+              <h3>Shop Playtime</h3>
+              <li>High Chair</li>
+              <li>Booster</li>
+              <li>Table & Bibs</li>
+              <li>Mealtime Accessories</li>
+              <li>Bundle & Save</li>
+              <li>All Mealtime</li>
+            </ul>
+          </div>
+          <!--Playtime Menu end-->
+          <!-- Mealtime-carousel -->
+          <div class="wrapper playtime-carousel-content">
+            <div class="carousel-top">
+              <h3 class="carousel-heading">Best Sellers</h3>
+              <div class="buttons">
+                <button id="prev">
+                  <span class="material-symbols-outlined"> arrow_left </span>
+                </button>
+
+                <button id="next">
+                  <span class="material-symbols-outlined"> arrow_right </span>
+                </button>
+              </div>
+            </div>
+            <div class="window">
+              <div class="sliding-div">
+                <div class="playtimeCard">
+                  <div class="playtime-card-img">
+                    <img src="assets/pic1.png" alt="" />
+                  </div>
+                  <div class="playtime-card-img-info">
+                    <div class="card-title">Best Seller</div>
+                    <div class="product-name">The Chair</div>
+                  </div>
+                </div>
+                <div class="playtimeCard">
+                  <div class="playtime-card-img">
+                    <img src="assets/pic2.png" alt="" />
+                  </div>
+                  <div class="playtime-card-img-info">
+                    <div class="card-title">Best Seller</div>
+                    <div class="product-name">The Chair</div>
+                  </div>
+                </div>
+                <div class="playtimeCard">
+                  <div class="playtime-card-img">
+                    <img src="assets/pic3.png" alt="" />
+                  </div>
+                  <div class="playtime-card-img-info">
+                    <div class="card-title">Best Seller</div>
+                    <div class="product-name">The Chair</div>
+                  </div>
+                </div>
+                <div class="playtimeCard">
+                  <div class="playtime-card-img">
+                    <img src="assets/pic4.png" alt="" />
+                  </div>
+                  <div class="playtime-card-img-info">
+                    <div class="card-title">Best Seller</div>
+                    <div class="product-name">The Chair</div>
+                  </div>
+                </div>
+                <div class="playtimeCard">
+                  <div class="playtime-card-img">
+                    <img src="assets/pic2.png" alt="" />
+                  </div>
+                  <div class="playtime-card-img-info">
+                    <div class="card-title">Best Seller</div>
+                    <div class="product-name">The Chair</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Carousel end -->
+          </div>
+          <!-- Playtime carousel end -->
+        </div>
+        <!-- Playtime Megamenu Dropdown end -->
+
         <!--Menus End-->
       </nav>
       <!--Navigation Bar End-->
