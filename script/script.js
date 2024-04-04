@@ -52,17 +52,29 @@ mealtimeButton.addEventListener("click", () => {
     setMenuVisibility("mealtime");
   }
 });
+
 const setMenuVisibility = (menu) => {
   if (menu === "mealtime") {
     playtimeButton.classList.remove("active");
     playtimeMenuWrapper.style.opacity = 0;
+    bathtimeButton.classList.remove("active");
+    bathtimeMenuWrapper.style.opacity = 0;
     mealtimeButton.classList.add("active");
     mealtimeMenuWrapper.style.opacity = 1;
   } else if (menu === "playtime") {
     mealtimeButton.classList.remove("active");
     mealtimeMenuWrapper.style.opacity = 0;
+    bathtimeButton.classList.remove("active");
+    bathtimeMenuWrapper.style.opacity = 0;
     playtimeButton.classList.add("active");
     playtimeMenuWrapper.style.opacity = 1;
+  } else if (menu === "bathtime") {
+    mealtimeButton.classList.remove("active");
+    mealtimeMenuWrapper.style.opacity = 0;
+    playtimeButton.classList.remove("active");
+    playtimeMenuWrapper.style.opacity = 0;
+    bathtimeButton.classList.add("active");
+    bathtimeMenuWrapper.style.opacity = 1;
   }
 };
 
@@ -82,9 +94,15 @@ playtimeButton.addEventListener("click", () => {
 /**
  * Bathtime Link Functionality
  */
+const bathtimeMenuWrapper = document.querySelector(".bathtime-menu-wrapper");
 const bathtimeButton = document.querySelector(".bathtime-button");
 bathtimeButton.addEventListener("click", () => {
-  menuWrapper.style.opacity = 1;
+  if (Array.from(bathtimeButton.classList).includes("active")) {
+    bathtimeButton.classList.remove("active");
+    bathtimeMenuWrapper.style.opacity = 0;
+  } else {
+    setMenuVisibility("bathtime");
+  }
 });
 
 /*
