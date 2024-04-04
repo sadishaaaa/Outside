@@ -216,9 +216,9 @@ h3 {
     top: 101%;
     display: flex;
     justify-content: space-between;
-    transition: opacity 300ms ease;
+    transition: display 3000ms ease;
     padding: 57px 0;
-    opacity: 0;
+    display: none;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   }
   .menu {

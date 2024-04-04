@@ -47,7 +47,7 @@ const mealtimeMenuWrapper = document.querySelector(".mealtime-menu-wrapper");
 mealtimeButton.addEventListener("click", () => {
   if (Array.from(mealtimeButton.classList).includes("active")) {
     mealtimeButton.classList.remove("active");
-    mealtimeMenuWrapper.style.opacity = 0;
+    mealtimeMenuWrapper.style.display = "none";
   } else {
     setMenuVisibility("mealtime");
   }
@@ -56,25 +56,25 @@ mealtimeButton.addEventListener("click", () => {
 const setMenuVisibility = (menu) => {
   if (menu === "mealtime") {
     playtimeButton.classList.remove("active");
-    playtimeMenuWrapper.style.opacity = 0;
+    playtimeMenuWrapper.style.display = "none";
     bathtimeButton.classList.remove("active");
-    bathtimeMenuWrapper.style.opacity = 0;
+    bathtimeMenuWrapper.style.display = "none";
     mealtimeButton.classList.add("active");
-    mealtimeMenuWrapper.style.opacity = 1;
+    mealtimeMenuWrapper.style.display = "flex";
   } else if (menu === "playtime") {
     mealtimeButton.classList.remove("active");
-    mealtimeMenuWrapper.style.opacity = 0;
+    mealtimeMenuWrapper.style.display = "none";
     bathtimeButton.classList.remove("active");
-    bathtimeMenuWrapper.style.opacity = 0;
+    bathtimeMenuWrapper.style.display = "none";
     playtimeButton.classList.add("active");
-    playtimeMenuWrapper.style.opacity = 1;
+    playtimeMenuWrapper.style.display = "flex";
   } else if (menu === "bathtime") {
     mealtimeButton.classList.remove("active");
-    mealtimeMenuWrapper.style.opacity = 0;
+    mealtimeMenuWrapper.style.display = "none";
     playtimeButton.classList.remove("active");
-    playtimeMenuWrapper.style.opacity = 0;
+    playtimeMenuWrapper.style.display = "none";
     bathtimeButton.classList.add("active");
-    bathtimeMenuWrapper.style.opacity = 1;
+    bathtimeMenuWrapper.style.display = "flex";
   }
 };
 
@@ -86,7 +86,7 @@ const playtimeButton = document.querySelector(".playtime-button");
 playtimeButton.addEventListener("click", () => {
   if (Array.from(playtimeButton.classList).includes("active")) {
     playtimeButton.classList.remove("active");
-    playtimeMenuWrapper.style.opacity = 0;
+    playtimeMenuWrapper.style.display = "none";
   } else {
     setMenuVisibility("playtime");
   }
@@ -99,7 +99,7 @@ const bathtimeButton = document.querySelector(".bathtime-button");
 bathtimeButton.addEventListener("click", () => {
   if (Array.from(bathtimeButton.classList).includes("active")) {
     bathtimeButton.classList.remove("active");
-    bathtimeMenuWrapper.style.opacity = 0;
+    bathtimeMenuWrapper.style.display = "none";
   } else {
     setMenuVisibility("bathtime");
   }
@@ -117,7 +117,7 @@ bathtimeButton.addEventListener("click", () => {
 // let leftPosition = 0;
 // let currentSlide = 1;
 // console.log(numberOfSlides);
-// const cardWith = card.offsetWidth;
+// const cardWidth = card.offsetWidth;
 // const gapBetweenCards = 800 / 3 + 10;
 
 // nextButton.addEventListener("click", () => {
@@ -144,7 +144,7 @@ const nextButtons = document.querySelectorAll(".next");
 const prevButtons = document.querySelectorAll(".prev");
 const slidingDivs = document.querySelectorAll(".sliding-div");
 console.log(slidingDivs);
-const card = document.querySelector(".Card");
+
 let positions = [];
 
 Array.from(slidingDivs).map((slide, idx) =>
@@ -153,13 +153,14 @@ Array.from(slidingDivs).map((slide, idx) =>
 
 console.log(positions);
 
-const cardWith = card.offsetWidth;
 const gapBetweenCards = 10;
+const cardWidth = 266.66; //card width  in px
 function scrollLeft(slidingDiv, idx) {
+  console.log(cardWidth);
   console.log(idx);
   const numberOfSlides = slidingDiv.querySelectorAll(".Card").length;
   if (positions[idx].currentSlide < numberOfSlides) {
-    positions[idx].leftPosition -= cardWith + gapBetweenCards;
+    positions[idx].leftPosition -= cardWidth + gapBetweenCards;
     slidingDiv.style.left = positions[idx].leftPosition + "px";
     positions[idx].currentSlide++;
   }
