@@ -110,11 +110,10 @@ bathtimeButton.addEventListener("click", () => {
  */
 const nextButton = document.querySelector("#next");
 const prevButton = document.querySelector("#prev");
-
 const slidingDiv = document.querySelector(".sliding-div");
-const card = document.querySelector(".card");
+const card = document.querySelector(".Card");
 
-const numberOfSlides = document.querySelectorAll(".playtimeCard").length;
+const numberOfSlides = document.querySelectorAll(".Card").length;
 let leftPosition = 0;
 let currentSlide = 1;
 console.log(numberOfSlides);
