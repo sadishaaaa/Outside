@@ -108,35 +108,69 @@ bathtimeButton.addEventListener("click", () => {
 /*
  *carousel
  */
-const nextButton = document.querySelector("#next");
-const prevButton = document.querySelector("#prev");
-const slidingDiv = document.querySelector(".sliding-div");
+// const nextButton = document.querySelectorAll(".next");
+// const prevButton = document.querySelectorAll(".prev");
+// const slidingDiv = document.querySelector(".sliding-div");
+// const card = document.querySelector(".Card");
+
+// const numberOfSlides = document.querySelectorAll(".Card").length;
+// let leftPosition = 0;
+// let currentSlide = 1;
+// console.log(numberOfSlides);
+// const cardWith = card.offsetWidth;
+// const gapBetweenCards = 800 / 3 + 10;
+
+// nextButton.addEventListener("click", () => {
+//   if (currentSlide < numberOfSlides) {
+//     leftPosition -= cardWith + gapBetweenCards;
+//     slidingDiv.style.left = leftPosition + "px";
+//     currentSlide++;
+//   }
+//   if (currentSlide === numberOfSlides) {
+//     leftPosition = 0;
+//     slidingDiv.style.left = 0;
+//     currentSlide = 0;
+//   }
+// });
+
+// prevButton.addEventListener("click", () => {
+//   if (currentSlide > 0) {
+//     leftPosition += cardWith + gapBetweenCards;
+//     slidingDiv.style.left = leftPosition + "px";
+//     currentSlide--;
+//   }
+// });
+const nextButtons = document.querySelectorAll(".next");
+const prevButtons = document.querySelectorAll(".prev");
+const slidingDivs = document.querySelectorAll(".sliding-div");
+console.log(slidingDivs);
 const card = document.querySelector(".Card");
+let positions = [];
 
-const numberOfSlides = document.querySelectorAll(".Card").length;
-let leftPosition = 0;
-let currentSlide = 1;
-console.log(numberOfSlides);
+Array.from(slidingDivs).map((slide, idx) =>
+  positions.push({ leftPosition: 0, currentSlide: 1 })
+);
+
+console.log(positions);
+
 const cardWith = card.offsetWidth;
-const gapBetweenCards = 800 / 3 + 10;
-
-nextButton.addEventListener("click", () => {
-  if (currentSlide < numberOfSlides) {
-    leftPosition -= cardWith + gapBetweenCards;
-    slidingDiv.style.left = leftPosition + "px";
-    currentSlide++;
+const gapBetweenCards = 10;
+function scrollLeft(slidingDiv, idx) {
+  console.log(idx);
+  const numberOfSlides = slidingDiv.querySelectorAll(".Card").length;
+  if (positions[idx].currentSlide < numberOfSlides) {
+    positions[idx].leftPosition -= cardWith + gapBetweenCards;
+    slidingDiv.style.left = positions[idx].leftPosition + "px";
+    positions[idx].currentSlide++;
   }
-  if (currentSlide === numberOfSlides) {
-    leftPosition = 0;
+  if (positions[idx].currentSlide === numberOfSlides) {
+    positions[idx].leftPosition = 0;
     slidingDiv.style.left = 0;
-    currentSlide = 0;
+    positions[idx].currentSlide = 0;
   }
-});
+}
 
-prevButton.addEventListener("click", () => {
-  if (currentSlide > 0) {
-    leftPosition += cardWith + gapBetweenCards;
-    slidingDiv.style.left = leftPosition + "px";
-    currentSlide--;
-  }
-});
+nextButtons.forEach((nextBtn, idx) =>
+  nextBtn.addEventListener("click", () => scrollLeft(slidingDivs[idx], idx))
+);
+console.log(nextButtons);

@@ -151,7 +151,7 @@ li {
 .new-tag,
 .desktop-new-tag {
   position: absolute;
-  top: -5px;
+  top: -10px;
   right: -25%;
 }
 .menu-wrapper {
