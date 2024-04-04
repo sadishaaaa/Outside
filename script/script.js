@@ -10,12 +10,14 @@ crossButton.addEventListener("click", (e) => {
     announcementDiv.style.display = "none";
   }, 200);
 });
+
 /**
  * Mobile Menu Open Close Functionality
  */
 const hamburgerMenu = document.querySelector("#hamburger-menu");
 const hamburgerClose = document.querySelector("#hamburger-close");
 const mobileNavDiv = document.querySelector(".mobile-menu");
+
 /**
  * Opening Mobile Menu
  */
@@ -24,6 +26,7 @@ hamburgerMenu.addEventListener("click", () => {
   hamburgerMenu.style.display = "none";
   hamburgerClose.style.display = "block";
 });
+
 /**
  * Closing Mobile Menu
  */
@@ -91,6 +94,7 @@ playtimeButton.addEventListener("click", () => {
     setMenuVisibility("playtime");
   }
 });
+
 /**
  * Bathtime Link Functionality
  */
@@ -108,42 +112,9 @@ bathtimeButton.addEventListener("click", () => {
 /*
  *carousel
  */
-// const nextButton = document.querySelectorAll(".next");
-// const prevButton = document.querySelectorAll(".prev");
-// const slidingDiv = document.querySelector(".sliding-div");
-// const card = document.querySelector(".Card");
-
-// const numberOfSlides = document.querySelectorAll(".Card").length;
-// let leftPosition = 0;
-// let currentSlide = 1;
-// console.log(numberOfSlides);
-// const cardWidth = card.offsetWidth;
-// const gapBetweenCards = 800 / 3 + 10;
-
-// nextButton.addEventListener("click", () => {
-//   if (currentSlide < numberOfSlides) {
-//     leftPosition -= cardWith + gapBetweenCards;
-//     slidingDiv.style.left = leftPosition + "px";
-//     currentSlide++;
-//   }
-//   if (currentSlide === numberOfSlides) {
-//     leftPosition = 0;
-//     slidingDiv.style.left = 0;
-//     currentSlide = 0;
-//   }
-// });
-
-// prevButton.addEventListener("click", () => {
-//   if (currentSlide > 0) {
-//     leftPosition += cardWith + gapBetweenCards;
-//     slidingDiv.style.left = leftPosition + "px";
-//     currentSlide--;
-//   }
-// });
 const nextButtons = document.querySelectorAll(".next");
 const prevButtons = document.querySelectorAll(".prev");
 const slidingDivs = document.querySelectorAll(".sliding-div");
-console.log(slidingDivs);
 
 let positions = [];
 
@@ -151,13 +122,9 @@ Array.from(slidingDivs).map((slide, idx) =>
   positions.push({ leftPosition: 0, currentSlide: 1 })
 );
 
-console.log(positions);
-
 const gapBetweenCards = 10;
-const cardWidth = 266.66; //card width  in px
+const cardWidth = 818 / 4; //card width  in px
 function scrollLeft(slidingDiv, idx) {
-  console.log(cardWidth);
-  console.log(idx);
   const numberOfSlides = slidingDiv.querySelectorAll(".Card").length;
   if (positions[idx].currentSlide < numberOfSlides) {
     positions[idx].leftPosition -= cardWidth + gapBetweenCards;
@@ -174,4 +141,12 @@ function scrollLeft(slidingDiv, idx) {
 nextButtons.forEach((nextBtn, idx) =>
   nextBtn.addEventListener("click", () => scrollLeft(slidingDivs[idx], idx))
 );
-console.log(nextButtons);
+
+// detects window resize and hides the menu if the window is less than 768px
+window.addEventListener("resize", () => {
+  if (window.innerWidth < 768) {
+    menuWrapper.style.display = "none";
+  } else {
+    menuWrapper.style.display = "flex";
+  }
+});

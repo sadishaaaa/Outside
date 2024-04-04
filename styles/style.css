@@ -32,6 +32,10 @@ header {
 .announcement {
   display: flex;
   width: 100%;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.2px;
+  text-align: center;
   padding: 8px 0px;
   align-items: center;
   justify-content: center;
@@ -85,18 +89,22 @@ nav {
 
 .desktop-menu {
   display: none;
+  margin: 0;
 }
 
 .desktop-menu-list {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   list-style: none;
 }
 
 .desktop-menu-list > li {
   padding: 4px 12px;
   cursor: pointer;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.1px;
 }
 
 li {
@@ -151,7 +159,7 @@ li {
 .new-tag,
 .desktop-new-tag {
   position: absolute;
-  top: -10px;
+  top: -3px;
   right: -25%;
 }
 .menu-wrapper {
@@ -171,13 +179,14 @@ h3 {
 .menu {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 30%;
 }
 
 .menu > .list {
   list-style: none;
   display: flex;
   flex-direction: column;
+  font-size: 18px;
   padding: 0;
   margin: 0;
   gap: 2rem;
@@ -227,7 +236,7 @@ h3 {
 }
 @media screen and (min-width: 994px) {
   .menu {
-    padding-left: 10rem;
+    padding-left: 9rem;
   }
 }
 /* carousel */
@@ -243,7 +252,7 @@ h3 {
 
 .sliding-div {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   height: 100%;
   min-width: fit-content;
   position: absolute;
@@ -257,7 +266,7 @@ h3 {
 .Card {
   height: 320px;
   background-color: #f1f1f1;
-  width: calc(800px / 3);
+  width: calc(818px / 4);
 }
 
 img {
@@ -292,6 +301,8 @@ img {
 .carousel-heading {
   font-size: 18px;
   font-style: italic;
+  line-height: 22px;
+  letter-spacing: 0.1px;
 }
 .card-img {
   height: 80%;
@@ -304,15 +315,15 @@ img {
   padding: 10px 13px;
 }
 .card-title {
-  font-weight: 200;
+  font-weight: 300;
   font-style: italic;
-  font-size: 12px;
+  font-size: 8px;
   line-height: 9px;
   color: #828282;
-  letter-spacing: 2.6px;
+  letter-spacing: 1.6px;
 }
 .product-name {
-  font-size: 22px;
+  font-size: 18px;
   color: #0f234c;
   line-height: 27px;
   letter-spacing: 0.3px;
