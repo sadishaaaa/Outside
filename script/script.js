@@ -38,115 +38,152 @@ hamburgerClose.addEventListener("click", () => {
 });
 
 /**
- * Menu Wrapper
+ * Menu drpdownn
  */
-const menuWrapper = document.querySelector(".menu-wrapper");
 
-/**
- * Mealtime Link Functionality
- */
+// Selecting buttons and menu elements
 const mealtimeButton = document.querySelector(".mealtime-button");
-const mealtimeMenuWrapper = document.querySelector(".mealtime-menu-wrapper");
-mealtimeButton.addEventListener("click", () => {
-  if (Array.from(mealtimeButton.classList).includes("active")) {
-    mealtimeButton.classList.remove("active");
-    mealtimeMenuWrapper.style.display = "none";
-  } else {
-    setMenuVisibility("mealtime");
-  }
-});
+const playtimeButton = document.querySelector(".playtime-button");
+const bathtimeButton = document.querySelector(".bathtime-button");
 
-const setMenuVisibility = (menu) => {
-  if (menu === "mealtime") {
-    playtimeButton.classList.remove("active");
-    playtimeMenuWrapper.style.display = "none";
-    bathtimeButton.classList.remove("active");
-    bathtimeMenuWrapper.style.display = "none";
-    mealtimeButton.classList.add("active");
-    mealtimeMenuWrapper.style.display = "flex";
-  } else if (menu === "playtime") {
-    mealtimeButton.classList.remove("active");
-    mealtimeMenuWrapper.style.display = "none";
-    bathtimeButton.classList.remove("active");
-    bathtimeMenuWrapper.style.display = "none";
-    playtimeButton.classList.add("active");
-    playtimeMenuWrapper.style.display = "flex";
-  } else if (menu === "bathtime") {
-    mealtimeButton.classList.remove("active");
-    mealtimeMenuWrapper.style.display = "none";
-    playtimeButton.classList.remove("active");
-    playtimeMenuWrapper.style.display = "none";
-    bathtimeButton.classList.add("active");
-    bathtimeMenuWrapper.style.display = "flex";
+const menuWrapper = document.getElementById("menu-wrapper");
+const menuTitle = document.getElementById("menu-title");
+const menuItems = document.getElementById("menu-items");
+const slidingDiv = document.getElementById("sliding-div");
+const nextButton = document.getElementById("next");
+const prevButton = document.getElementById("prev");
+
+// Variables for tracking active menu item and current slide index
+let activeMenuItem = null;
+let currentSlideIndex = 0;
+
+// Function to get button based on menu item
+const getButtonByMenuItem = (menu) => {
+  switch (menu) {
+    case "mealtime":
+      return mealtimeButton;
+    case "playtime":
+      return playtimeButton;
+    case "bathtime":
+      return bathtimeButton;
+    default:
+      throw new Error("Invalid menu type");
   }
 };
 
-/**
- * Playtime Link Functionality
- */
-const playtimeMenuWrapper = document.querySelector(".playtime-menu-wrapper");
-const playtimeButton = document.querySelector(".playtime-button");
-playtimeButton.addEventListener("click", () => {
-  if (Array.from(playtimeButton.classList).includes("active")) {
-    playtimeButton.classList.remove("active");
-    playtimeMenuWrapper.style.display = "none";
-  } else {
-    setMenuVisibility("playtime");
+// Function to reset sliding div position
+const resetSlidingDivPosition = () => {
+  slidingDiv.style.left = 0;
+  currentSlideIndex = 0;
+};
+
+// Function to toggle active menu item change
+const toggleActiveMenuItemChange = (menuItem) => {
+  if (menuItem === activeMenuItem) {
+    return;
   }
-});
 
-/**
- * Bathtime Link Functionality
- */
-const bathtimeMenuWrapper = document.querySelector(".bathtime-menu-wrapper");
-const bathtimeButton = document.querySelector(".bathtime-button");
-bathtimeButton.addEventListener("click", () => {
-  if (Array.from(bathtimeButton.classList).includes("active")) {
-    bathtimeButton.classList.remove("active");
-    bathtimeMenuWrapper.style.display = "none";
-  } else {
-    setMenuVisibility("bathtime");
+  if (activeMenuItem) {
+    const oldActiveMenuButton = getButtonByMenuItem(activeMenuItem);
+    oldActiveMenuButton.classList.remove("active");
   }
-});
 
-/*
- *carousel
- */
-const nextButtons = document.querySelectorAll(".next");
-const prevButtons = document.querySelectorAll(".prev");
-const slidingDivs = document.querySelectorAll(".sliding-div");
+  const newActiveMenuButton = getButtonByMenuItem(menuItem);
+  newActiveMenuButton.classList.add("active");
 
-let positions = [];
+  activeMenuItem = menuItem;
+  resetSlidingDivPosition();
+};
 
-Array.from(slidingDivs).map((slide, idx) =>
-  positions.push({ leftPosition: 0, currentSlide: 1 })
-);
+// Function to display mega menu dropdown
+const displayMegaMenuDropdown = (menuItem) => {
+  toggleActiveMenuItemChange(menuItem);
 
+  const content = CONTENTS[menuItem];
+  menuTitle.textContent = content.title;
+  menuItems.innerHTML = "";
+  slidingDiv.innerHTML = "";
+  content.subMenuItems.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    menuItems.appendChild(li);
+  });
+  content.carouselItems.forEach((item) => {
+    const div = document.createElement("div");
+    div.classList.add("card");
+    div.innerHTML = `
+      <div class="card-img">
+        <img src="${item.img}" alt="">
+      </div>
+      <div class="card-img-info">
+        <div class="card-title">${item.title}</div>
+        <div class="product-name">${item.product}</div>
+      </div>
+      `;
+    slidingDiv.appendChild(div);
+  });
+
+  menuWrapper.style.opacity = 1;
+};
+
+// Function to hide mega menu dropdown
+const hideMegaMenuDropdown = () => {
+  menuTitle.textContent = "";
+  menuItems.innerHTML = "";
+  slidingDiv.innerHTML = "";
+  menuWrapper.style.opacity = 0;
+
+  activeMenuItem = null;
+  resetSlidingDivPosition();
+};
+
+// Function to handle menu item click
+const handleMenuItemClick = (menuItem) => {
+  if (menuItem === activeMenuItem) {
+    hideMegaMenuDropdown();
+    return;
+  }
+  displayMegaMenuDropdown(menuItem);
+};
+
+// Event listeners for menu item buttons
+mealtimeButton.addEventListener("click", () => handleMenuItemClick("mealtime"));
+playtimeButton.addEventListener("click", () => handleMenuItemClick("playtime"));
+bathtimeButton.addEventListener("click", () => handleMenuItemClick("bathtime"));
+
+// Constants for carousel functionality
 const gapBetweenCards = 10;
-const cardWidth = 818 / 4; //card width  in px
-function scrollLeft(slidingDiv, idx) {
-  const numberOfSlides = slidingDiv.querySelectorAll(".Card").length;
-  if (positions[idx].currentSlide < numberOfSlides) {
-    positions[idx].leftPosition -= cardWidth + gapBetweenCards;
-    slidingDiv.style.left = positions[idx].leftPosition + "px";
-    positions[idx].currentSlide++;
-  }
-  if (positions[idx].currentSlide === numberOfSlides) {
-    positions[idx].leftPosition = 0;
+const cardWidth = 818 / 4; //calculating card width, in px
+
+// Function to handle next button click for carousel
+const handleNext = () => {
+  const numberOfSlides = slidingDiv.querySelectorAll(".card").length;
+  currentSlideIndex++;
+  if (currentSlideIndex < numberOfSlides) {
+    const leftPosition =
+      parseFloat(slidingDiv.style.left || 0) - (cardWidth + gapBetweenCards);
+    slidingDiv.style.left = leftPosition + "px";
+  } else if (currentSlideIndex === numberOfSlides) {
     slidingDiv.style.left = 0;
-    positions[idx].currentSlide = 0;
+    currentSlideIndex = 0;
   }
-}
+};
 
-nextButtons.forEach((nextBtn, idx) =>
-  nextBtn.addEventListener("click", () => scrollLeft(slidingDivs[idx], idx))
-);
-
-// detects window resize and hides the menu if the window is less than 768px
-window.addEventListener("resize", () => {
-  if (window.innerWidth < 768) {
-    menuWrapper.style.display = "none";
-  } else {
-    menuWrapper.style.display = "flex";
+// Function to handle previous button click for carousel
+const handlePrev = () => {
+  const numberOfSlides = slidingDiv.querySelectorAll(".card").length;
+  if (currentSlideIndex > 0) {
+    const leftPosition =
+      parseFloat(slidingDiv.style.left || 0) + (cardWidth + gapBetweenCards);
+    slidingDiv.style.left = leftPosition + "px";
+    currentSlideIndex--;
+  } else if (currentSlideIndex === 0) {
+    slidingDiv.style.left =
+      -((cardWidth + gapBetweenCards) * (numberOfSlides - 1)) + "px";
+    currentSlideIndex = numberOfSlides - 1;
   }
-});
+};
+
+// Event listeners for next and previous buttons
+nextButton.addEventListener("click", handleNext);
+prevButton.addEventListener("click", handlePrev);

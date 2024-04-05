@@ -162,7 +162,7 @@ li {
   top: -3px;
   right: -25%;
 }
-.menu-wrapper {
+#menu-wrapper {
   display: none;
 }
 
@@ -180,9 +180,10 @@ h3 {
   display: flex;
   flex-direction: column;
   width: 30%;
+  gap: 2rem;
 }
 
-.menu > .list {
+.menu > #menu-items {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -192,7 +193,7 @@ h3 {
   gap: 2rem;
   cursor: pointer;
 }
-.menu > .list > li:last-child {
+.menu > #menu-items > li:last-child {
   text-decoration: underline;
 }
 .active {
@@ -214,7 +215,7 @@ h3 {
     display: block;
     padding: 0;
   }
-  .menu-wrapper {
+  #menu-wrapper {
     font-family: "Roboto";
     background-color: white;
     position: absolute;
@@ -225,9 +226,9 @@ h3 {
     top: 101%;
     display: flex;
     justify-content: space-between;
-    transition: display 3000ms ease;
+    transition: opacity 300ms ease;
     padding: 57px 0;
-    display: none;
+    opacity: 0;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   }
   .menu {
@@ -240,17 +241,17 @@ h3 {
   }
 }
 /* carousel */
-.wrapper {
+.carousel-wrapper {
   width: 60%;
 }
-.window {
+#carousel-window {
   width: 100%;
   height: 100%;
   overflow: hidden;
   position: relative;
 }
 
-.sliding-div {
+#sliding-div {
   display: flex;
   gap: 10px;
   height: 100%;
@@ -263,7 +264,7 @@ h3 {
   transition: ease-in-out 300ms;
 }
 
-.Card {
+.card {
   height: 320px;
   background-color: #f1f1f1;
   width: calc(818px / 4);
