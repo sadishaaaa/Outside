@@ -1,6 +1,4 @@
-/**
- * Global Announcement Close function
- */
+//  Global Announcement Close function
 const crossButton = document.querySelector("#cross-button");
 const announcementDiv = document.querySelector(".announcement");
 crossButton.addEventListener("click", (e) => {
@@ -11,25 +9,19 @@ crossButton.addEventListener("click", (e) => {
   }, 200);
 });
 
-/**
- * Mobile Menu Open Close Functionality
- */
+//  Mobile Menu Open Close Functionality
 const hamburgerMenu = document.querySelector("#hamburger-menu");
 const hamburgerClose = document.querySelector("#hamburger-close");
 const mobileNavDiv = document.querySelector(".mobile-menu");
 
-/**
- * Opening Mobile Menu
- */
+// Opening Mobile Menu
 hamburgerMenu.addEventListener("click", () => {
   mobileNavDiv.style.transform = "scaleY(1)";
   hamburgerMenu.style.display = "none";
   hamburgerClose.style.display = "block";
 });
 
-/**
- * Closing Mobile Menu
- */
+// Closing Mobile Menu
 hamburgerClose.addEventListener("click", () => {
   mobileNavDiv.style.transform = "scaleY(0)";
   hamburgerMenu.style.display = "block";
@@ -37,10 +29,7 @@ hamburgerClose.addEventListener("click", () => {
   menuWrapper.style.opacity = 0;
 });
 
-/**
- * Menu drpdownn
- */
-
+// MenuDropdown
 // Selecting buttons and menu elements
 const mealtimeButton = document.querySelector(".mealtime-button");
 const playtimeButton = document.querySelector(".playtime-button");
