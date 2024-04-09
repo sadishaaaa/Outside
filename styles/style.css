@@ -156,11 +156,15 @@ li {
   position: relative;
 }
 
-.new-tag,
 .desktop-new-tag {
   position: absolute;
   top: -3px;
   right: -25%;
+}
+.new-tag {
+  position: absolute;
+  top: -8px;
+  right: -40%;
 }
 #menu-wrapper {
   display: none;
